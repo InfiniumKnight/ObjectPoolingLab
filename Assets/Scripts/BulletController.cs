@@ -6,6 +6,10 @@ public class BulletController : MonoBehaviour
 {
     public float lifeTime = 3;
 
+    private void Start()
+    {
+        
+    }
     void Update()
     {
         lifeTime -= Time.deltaTime;
@@ -18,7 +22,10 @@ public class BulletController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        other.gameObject.GetComponent<TargetBehavior>().TargetHit();
-        ObjectPoolManager.ReturnObjectToPool(gameObject);
+        if (other.gameObject.tag == "Target")
+        {
+            other.gameObject.GetComponent<TargetBehavior>().TargetHit();
+            ObjectPoolManager.ReturnObjectToPool(gameObject);
+        }
     }
 }

@@ -33,13 +33,15 @@ public class PlayerShootControls : MonoBehaviour
 
         transform.localEulerAngles = new Vector3(0, rotY, 0);
         cam.transform.localEulerAngles = new Vector3(-rotX, 0, 0);
+
+        HandleGunShooting();
     }
 
     private void HandleGunShooting()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
-            ObjectPoolManager.SpawnObject(BulletPrefab, BulletSpawn.transform.position, Gun.transform.rotation);
+            ObjectPoolManager.SpawnObject(BulletPrefab, BulletSpawn.transform.position, Quaternion.identity);
         }
     }
 }
