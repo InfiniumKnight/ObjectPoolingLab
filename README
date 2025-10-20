@@ -1,0 +1,5 @@
+There is an object pooler that instantiates bullets as needed but attempts to reuse them where possible. The bullets send themselves back to the pool when they
+hit a target or are flying for 3 seconds. For the observer, I have a game manager script that updates the score when a target dies by the target sending a call to the
+Gamemanager's UpdateScore method. The Builder is handled by a class that randomly selects one of three target type prefabs and one of three spawnpoints. each target
+inherits from the Target behavior class which handles most of the target type's functionality. The only thing the unique child classes due is assign the values of
+the inherited TargetBehavior Varliables.
