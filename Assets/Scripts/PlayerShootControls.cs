@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class PlayerShootControls : MonoBehaviour
 {
-    [SerializeField] GameObject Gun;
+    
     [SerializeField] GameObject BulletSpawn;
-    [SerializeField] GameObject BulletPrefab;
+    public float bulletSpeed = 20f;
+    public ObjectPoolManager bulletPool;
+    private float shootCooldown = 0.5f;
+
 
     public float sensitivity;
 
@@ -34,14 +37,41 @@ public class PlayerShootControls : MonoBehaviour
         transform.localEulerAngles = new Vector3(0, rotY, 0);
         cam.transform.localEulerAngles = new Vector3(-rotX, 0, 0);
 
-        HandleGunShooting();
+        if(shootCooldown >= 0.5)
+        {
+            HandleGunShooting();
+        }
+        else
+        {
+            shootCooldown += Time.deltaTime;
+        }
+        
     }
 
     private void HandleGunShooting()
     {
         if (Input.GetMouseButton(0))
         {
-            ObjectPoolManager.SpawnObject(BulletPrefab, BulletSpawn.transform.position, Quaternion.identity);
+            GameObject bullet = bulletPool.GetObject();
+            bullet.GetComponent<BulletController>().ObjectPool = bulletPool;
+            bullet.transform.position = BulletSpawn.transform.position;
+            bullet.transform.rotation = BulletSpawn.transform.rotation;
+
+            Rigidbody rb = bullet.GetComponent<Rigidbody>();
+
+            if(rb != null)
+            {
+                rb.velocity = bullet.transform.forward * bulletSpeed;
+            }
+            shootCooldown = 0;
+
+            StartCoroutine(DeactivateBullet(bullet));
         }
+    }
+
+    IEnumerator DeactivateBullet(GameObject bullet)
+    {
+        yield return new WaitForSeconds(3f);
+        bulletPool.ReturnObject(bullet);
     }
 }

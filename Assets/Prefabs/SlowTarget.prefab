@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8144132573916560185}
   - component: {fileID: 5681081832017672147}
   - component: {fileID: 2179555198194503207}
-  - component: {fileID: -4772812058629388426}
+  - component: {fileID: 7139004000951512267}
   m_Layer: 0
   m_Name: SlowTarget
   m_TagString: Target
@@ -102,8 +102,8 @@ MonoBehaviour:
   TargetHealth: 0
   TargetScoreWorth: 0
   Direction: {x: -1, y: 0, z: 0}
---- !u!64 &-4772812058629388426
-MeshCollider:
+--- !u!65 &7139004000951512267
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -120,7 +120,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 1.5, z: 1.5}
+  m_Center: {x: 0, y: 0, z: 0}

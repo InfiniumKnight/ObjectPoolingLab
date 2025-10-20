@@ -18,4 +18,9 @@ public class NormalTarget : TargetBehavior
     {
         base.Update();
     }
+
+    public override void TargetHit()
+    {
+        base.TargetHit();
+    }
 }

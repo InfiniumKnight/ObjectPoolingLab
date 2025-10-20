@@ -21,7 +21,7 @@ public class TargetBehavior : MonoBehaviour
         transform.Translate(Direction.normalized * TargetSpeed * Time.deltaTime);
     }
 
-    public void TargetHit()
+    public virtual void TargetHit()
     {
         TargetHealth--;
         

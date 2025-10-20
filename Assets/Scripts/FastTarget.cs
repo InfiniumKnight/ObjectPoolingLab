@@ -19,4 +19,9 @@ public class FastTarget : TargetBehavior
     {
         base.Update();
     }
+
+    public override void TargetHit()
+    {
+        base.TargetHit();
+    }
 }

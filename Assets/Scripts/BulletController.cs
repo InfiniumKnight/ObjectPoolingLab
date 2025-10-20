@@ -5,27 +5,15 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     public float lifeTime = 3;
-
-    private void Start()
-    {
-        
-    }
-    void Update()
-    {
-        lifeTime -= Time.deltaTime;
-
-        if (lifeTime < 0)
-        {
-            ObjectPoolManager.ReturnObjectToPool(gameObject);
-        }
-    }
+    public ObjectPoolManager ObjectPool;
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Target")
         {
-            other.gameObject.GetComponent<TargetBehavior>().TargetHit();
-            ObjectPoolManager.ReturnObjectToPool(gameObject);
+            TargetBehavior target = other.gameObject.GetComponent<TargetBehavior>();
+            target.TargetHit();
+            ObjectPool.ReturnObject(gameObject);
         }
     }
 }
