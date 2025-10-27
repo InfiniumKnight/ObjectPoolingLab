@@ -3,3 +3,7 @@ hit a target or are flying for 3 seconds. For the observer, I have a game manage
 Gamemanager's UpdateScore method. The Builder is handled by a class that randomly selects one of three target type prefabs and one of three spawnpoints. each target
 inherits from the Target behavior class which handles most of the target type's functionality. The only thing the unique child classes due is assign the values of
 the inherited TargetBehavior Varliables.
+
+The saving is done using io streams and writng to json files. it first gathers all the targets in the scene and then saves their positions to a vector3 array. 
+when loading, it goes through the lists from the json file and resets all the target's positions back to the saved locations. and the score is saved to a bianary file
+that is read when loading and applied to the game manager

@@ -57,12 +57,14 @@ public static class SaveManager
     {
         string filepath = Application.persistentDataPath + "/SavedData.json";
         string jsonData = File.ReadAllText(filepath);
+        GameManager gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
         BinaryFormatter formatter = new BinaryFormatter();
 
         FileStream binarySaveFile = File.Open(Application.persistentDataPath + "/" + binaryFile, FileMode.Open);
 
         currentScore = (int) formatter.Deserialize(binarySaveFile);
+        gameManager.CurrentScore = currentScore;
 
         binarySaveFile.Close();
 
