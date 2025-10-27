@@ -21,7 +21,8 @@ public static class SaveManager
 
     public static void SaveData()
     {
-        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Target");
+        List<GameObject> gameObjects = new List<GameObject>();
+        gameObjects.AddRange(GameObject.FindGameObjectsWithTag("Target"));
 
         GameManager gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
@@ -33,7 +34,7 @@ public static class SaveManager
 
         FileStream binarySaveFile = File.Create(Application.persistentDataPath + "/" + binaryFile);
 
-        for(int i = 0; i <= gameObjects.Length - 1; i++)
+        for(int i = 0; i <= gameObjects.Count - 1; i++)
         {
             SavedData save = new SavedData();
             save.Target.Add(gameObjects[i]); 
